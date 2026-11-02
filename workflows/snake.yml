@@ -1,11 +1,10 @@
+
 name: Generate Contribution Snake
 
 on:
   schedule:
     - cron: "0 */12 * * *"
-
   workflow_dispatch:
-
   push:
     branches:
       - main
@@ -16,10 +15,9 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
 
     steps:
-      - name: Generate Snake Animation
+      - name: Generate Snake
         uses: Platane/snk@v3
         with:
           github_user_name: Siddik-creator
@@ -27,7 +25,7 @@ jobs:
             dist/snake.svg
             dist/snake-dark.svg?palette=github-dark
 
-      - name: Publish Snake Animation
+      - name: Deploy to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
